@@ -27,11 +27,23 @@ type database struct {
 
 
 func init() {
-	var config tomlConfig
-	if _, err := toml.DecodeFile("./local.config.toml", &config); err != nil {
-		Println(err)
-		return
-	}
+
+    pwd, err_pwd := os.Getwd()
+        if err_pwd != nil {
+             Println(err_pwd)
+             os.Exit(1)
+        }
+
+    env_url := pwd + "/config/local.config.toml"
+
+    var config tomlConfig
+    _, err_config := toml.DecodeFile(env_url, &config)
+
+    if err_config != nil {
+    	Println(err_config)
+    	return
+    }
+
 
 
 	//"用户名:密码@[连接方式](主机名:端口号)/数据库名"
@@ -44,7 +56,7 @@ func init() {
 	} else {
 		Println("数据库连接成功")
 	}
-	
+
 
 }
 
