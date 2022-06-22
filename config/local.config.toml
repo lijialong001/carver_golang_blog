@@ -1,30 +1,42 @@
-//本地环境配置
-title  = "【本地环境】"
-[api]
-	ListenPort = 8012
-	Debug = true
-	LogLevel = "debug"
- 
+title = "本地环境"
+
 [admin]
-	ListenPort = 8888
-	Debug = true
-	LogLevel = "debug"
- 
-[database.main]
-	DSN = "root:amdin123@tcp(127.0.0.1:3306)/weifou?charset=utf8"
-	ReadDSN =  []
-	Active = 10
-	Idle = 10
-	IdleTimeout = "300s"
-	QueryTimeout = "1s"
-	ExecTimeout = "1s"
-	TranTimeout = "1s"
- 
- 
-[redis.main]
-	Addr = "127.0.0.1:6379"
-	Auth = ""
-	DialTimeout = "1s"
-	ReadTimeout = "200ms"
-	WriteTimeout = "200ms"
+Name = "admin"
+ListenPort = 8012
+debug = true
+LogLevel = "debug"
+
+[database]
+username = 'root'
+password  = 'root'
+database = 'carver'
+addr = "127.0.0.1"
+ports = [ 8001, 8001, 8002 ]
+connection_max = 5000
+enabled = true
+system_port = 8012
+
+
+
+[redis]
+Addr = "127.0.0.1:6379"
+Auth = ""
+DialTimeout = "1s"
+ReadTimeout = "200ms"
+WriteTimeout = "200ms"
+
+[servers]
+
+  [servers.local]
+  db = "carver1"
+  pwd = "carver1"
+
+  [servers.test]
+  db = "carver2"
+  pwd = "carver2"
+
+[other]
+data = [ ["local", "test"], [1, 2] ]
+type = ["git","github"]
+
 
