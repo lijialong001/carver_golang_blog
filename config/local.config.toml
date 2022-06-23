@@ -7,8 +7,8 @@ debug = true
 LogLevel = "debug"
 
 [database]
-username = 'root'
-password  = 'root'
+username = 'carver'
+password  = 'carver'
 database = 'carver'
 addr = "127.0.0.1"
 ports = [ 8001, 8001, 8002 ]
