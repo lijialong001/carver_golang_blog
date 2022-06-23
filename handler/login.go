@@ -10,9 +10,7 @@ _"carver_golang_blog/config"
 
 //用户登录
 func Login(context *gin.Context) {
-
-    Println("你好")
-
+    Println("doing...")
     //获取请求body
 //    user_params, _ := ioutil.ReadAll(context.Request.Body)
 //    user_info := string(user_params)
