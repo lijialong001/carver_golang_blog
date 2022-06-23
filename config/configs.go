@@ -81,10 +81,10 @@ func init() {
 	defer db.Close()                                            //关闭数据库
 	err := db.Ping()                                            //连接数据库
 	if err != nil {
-		Println("数据库连接失败")
+		Println("数据库连接失败❌")
 		return
 	} else {
-		Println("数据库连接成功")
+		Println("数据库连接成功✅")
 	}
 
 
