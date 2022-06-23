@@ -56,30 +56,36 @@ type other struct {
 	Type    []string
 }
 
+var DB  *sql.DB
 
 
 func init() {
 
-    pwd, err_pwd := os.Getwd()
-    if err_pwd != nil {
-         Println(err_pwd)
+    pwd, pwdError := os.Getwd()
+    if pwdError != nil {
+         Println(pwdError)
          os.Exit(1)
     }
 
-    env_url := pwd + "/config/local.config.toml"
+    envUrl := pwd + "/config/local.config.toml"
 
     var config tomlConfig
-    _, err_config := toml.DecodeFile(env_url, &config)
+    _, configError := toml.DecodeFile(envUrl, &config)
 
-    if err_config != nil {
-    	Println(err_config)
+    if configError != nil {
+    	Println(configError)
     	return
     }
 
-	//"用户名:密码@[连接方式](主机名:端口号)/数据库名"
-	db, _ := sql.Open("mysql", config.Db.UserName+":"+config.Db.Password+"@(localhost)/"+config.Db.Database) // 设置连接数据库的参数
-	defer db.Close()                                            //关闭数据库
-	err := db.Ping()                                            //连接数据库
+    //"用户名:密码@[连接方式](主机名:端口号)/数据库名"
+    connStr := Sprintf("%s:%s@(%s)/%s", config.Db.UserName,config.Db.Password,config.Db.Addr,config.Db.Database)
+    //设置连接数据库的参数
+	db, _ := sql.Open("mysql", connStr)
+    //关闭数据库
+	defer db.Close()
+    //连接数据库
+	err := db.Ping()
+
 	if err != nil {
 		Println("数据库连接失败❌")
 		return
@@ -87,6 +93,7 @@ func init() {
 		Println("数据库连接成功✅")
 	}
 
+    DB = db
 
 }
 
