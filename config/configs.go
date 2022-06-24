@@ -2,12 +2,13 @@ package config
 
 import (
 	"database/sql"
-	. "fmt"
-	 _"github.com/go-sql-driver/mysql"
+	_"github.com/go-sql-driver/mysql"
 	"github.com/BurntSushi/toml"
-	//"path/filepath"
 	"os"
+    . "fmt"
 )
+
+
 
 type tomlConfig struct {
 	Title       string
@@ -63,8 +64,8 @@ func init() {
 
     pwd, pwdError := os.Getwd()
     if pwdError != nil {
-         Println(pwdError)
-         os.Exit(1)
+        os.Exit(1)
+        panic(pwdError)
     }
 
     envUrl := pwd + "/config/local.config.toml"
@@ -73,23 +74,21 @@ func init() {
     _, configError := toml.DecodeFile(envUrl, &config)
 
     if configError != nil {
-    	Println(configError)
-    	return
+    	panic(configError)
     }
 
     //"用户名:密码@[连接方式](主机名:端口号)/数据库名"
     connStr := Sprintf("%s:%s@(%s)/%s", config.Db.UserName,config.Db.Password,config.Db.Addr,config.Db.Database)
     //设置连接数据库的参数
 	db, _ := sql.Open("mysql", connStr)
-    //关闭数据库
-	defer db.Close()
     //连接数据库
 	err := db.Ping()
 
 	if err != nil {
 		Println("数据库连接失败❌")
-		return
+        return
 	} else {
+
 		Println("数据库连接成功✅")
 	}
 
