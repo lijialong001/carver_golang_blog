@@ -1,11 +1,17 @@
 package router
-import (
-"github.com/gin-gonic/gin"
-"carver_golang_blog/api/controller"
-)
-func CarverRouter() *gin.Engine {
 
+import (
+    "carver_golang_blog/api/controller"
+    "github.com/gin-gonic/gin"
+)
+
+func CarverRouter() *gin.Engine {
     router := gin.Default()
-    router.POST("/api/login", controller.Login)
+
+    api := router.Group("api")
+    {
+        api.POST("login", controller.Login)//用户登录
+    }
+
     return router
 }
