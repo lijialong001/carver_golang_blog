@@ -1,28 +1,22 @@
 package controller
+
 import (
-    "github.com/gin-gonic/gin"
     "carver_golang_blog/api/service"
+    "github.com/gin-gonic/gin"
     //"io/ioutil"
     "net/http"
-    ."fmt"
+    //."fmt"
 )
 
-
-//用户登录
+/**
+ *@desc 用户登录
+ *@author Carver
+ */
 func Login(context *gin.Context) {
-     userInfo := service.GetUserInfo()
-     Prinln(userInfo)
-    //context.JSON(http.StatusOK, gin.H{
-    //    	"data": userInfo,
-    //})
+    //处理用户信息
+    userInfo := service.GetUserInfo(context)
 
-    //获取请求body
-//    user_params, _ := ioutil.ReadAll(context.Request.Body)
-//    user_info := string(user_params)
-
-//    context.JSON(http.StatusOK, gin.H{
-//	"message": user_info,
-//    })
+    context.JSON(http.StatusOK, gin.H{
+        "message": userInfo,
+    })
 }
-
-

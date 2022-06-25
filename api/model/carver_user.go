@@ -1,8 +1,7 @@
 package model
 
 type UserField struct {
-    Id      int         `json:"id"`
-    Name    string      `json:"name"`
-    Pid     int         `json:"pid"`
+    UserId   int    `json:"userId"`
+    UserName string `json:"userName"`
+    UserPwd  string `json:"userPwd"`
 }
-
