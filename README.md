@@ -28,12 +28,13 @@ vue init webpack
     选择第三项 No, I will handle that myself
 
 npm i element-ui
-```
+
 
 
 安装依赖包资源较大,建议使用淘宝NPM国内镜像 详情请进 http://npm.taobao.org/
 
 npm i
+```
 
 2. 如何调试
 
