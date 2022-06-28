@@ -12,6 +12,8 @@
 /index.html
 1. 开发前请安装node.js 并运行以下命令安装vue以及依赖
 
+
+```
 npm i vue -g
 npm i vue-cli -g
 vue init webpack
@@ -26,6 +28,8 @@ vue init webpack
     选择第三项 No, I will handle that myself
 
 npm i element-ui
+```
+
 
 安装依赖包资源较大,建议使用淘宝NPM国内镜像 详情请进 http://npm.taobao.org/
 
@@ -36,13 +40,13 @@ npm i
 
 在 /src/App.vue 文件中 内附注释
 
-npm run dev
+`npm run dev`
 
 浏览器打开 http://127.0.0.1:8080 即可看到实时界面
 
 3. 如何编译
 
-npm run build
+`npm run build`
 
 编译后,文件会存放到 /dist/下
 
