@@ -70,9 +70,13 @@ npm run build
 
 方法二： 调整nginx.conf配置文件（添加对应的伪静态），直接访问静态页
 
+
+```
 location / {
   if (!-e $request_filename) {
     rewrite  ^(.*)$ /index.html?s=/$1  last;
     break;
   }
 }
+```
+
